@@ -1,0 +1,370 @@
+[gd_scene load_steps=26 format=3 uid="uid://bdwlj6ks2xigi"]
+
+[ext_resource type="Script" uid="uid://b36dwttdv6a7n" path="res://Assets/Environments/camp/camp_world.gd" id="1_fy02d"]
+[ext_resource type="Texture2D" uid="uid://dae48nae4mpgi" path="res://Assets/Environments/camp/sky.png" id="1_ik016"]
+[ext_resource type="Texture2D" uid="uid://yv3x1agc256a" path="res://Assets/Environments/camp/sun.png" id="2_fy02d"]
+[ext_resource type="PackedScene" uid="uid://c8b28xnw4vtij" path="res://Player/Player.tscn" id="2_tjdta"]
+[ext_resource type="Script" uid="uid://2s8xoy4lemwq" path="res://Assets/Environments/camp/sun.gd" id="4_ju2xs"]
+[ext_resource type="Texture2D" uid="uid://bvbqjoc1jwggk" path="res://Assets/Environments/camp/moon.png" id="5_rnlua"]
+[ext_resource type="Texture2D" uid="uid://b270k6kweryev" path="res://Assets/Environments/TileMapTest.png" id="5_w0pwc"]
+[ext_resource type="Texture2D" uid="uid://cnujpeo5rckv2" path="res://Assets/Environments/shed/explosion (10).png" id="6_d21qw"]
+[ext_resource type="Script" uid="uid://caeqx7xjyb757" path="res://Assets/Environments/camp/moon.gd" id="6_gct2s"]
+[ext_resource type="Texture2D" uid="uid://ynpem8ckwv1n" path="res://Assets/Environments/camp/mooon floor.png" id="7_c6wm7"]
+[ext_resource type="PackedScene" uid="uid://b1gn2ub4b6jcf" path="res://Assets/Environments/camp/Harpoon_gun.tscn" id="7_rnlua"]
+[ext_resource type="PackedScene" uid="uid://85yb11edy46h" path="res://Assets/Environments/camp/car_boot.tscn" id="8_gct2s"]
+[ext_resource type="Script" uid="uid://fnnkwikftbfh" path="res://Assets/Environments/Looper/looper.gd" id="8_jkle8"]
+[ext_resource type="Texture2D" uid="uid://g4bblbyjh4k2" path="res://Assets/Environments/camp/mooon wall.png" id="9_jkle8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rnlua"]
+radius = 7.5902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rffac"]
+radius = 19.0
+
+[sub_resource type="Animation" id="Animation_gct2s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rnlua"]
+resource_name = "moon_cycling"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6wm7"]
+_data = {
+&"RESET": SubResource("Animation_gct2s"),
+&"moon_cycling": SubResource("Animation_rnlua")
+}
+
+[sub_resource type="Animation" id="Animation_ju2xs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sun/Explosion(10):frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sun/Explosion(10):visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rffac"]
+resource_name = "day_night_cycle"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_1781s"]
+resource_name = "blow up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Sun/Explosion(10):frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 19]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sun")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D2/Moon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/Sun/Explosion(10):visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gct2s"]
+_data = {
+&"RESET": SubResource("Animation_ju2xs"),
+&"blow up": SubResource("Animation_1781s"),
+&"day_night_cycle": SubResource("Animation_rffac")
+}
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_w0pwc"]
+segments = PackedVector2Array(45, -96, 13, -20, 45, -97, 64, -109, -137, 46, -91, 2, -66, 127, -142, 53, -142, 51, -129, -47, -90, 2, -53, 36, -65, -110, 64, -110, 20, -8, -52, 36, 0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0pwc"]
+size = Vector2(34.0827, 59)
+
+[node name="base_world" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_fy02d")
+metadata/_custom_type_script = "uid://cbmvuvxefk72k"
+
+[node name="TileMapTest3" type="Sprite2D" parent="."]
+rotation = -0.118682
+scale = Vector2(5000, 5000)
+texture = ExtResource("5_w0pwc")
+hframes = 90
+vframes = 90
+frame = 637
+
+[node name="TileMapTest2" type="Sprite2D" parent="TileMapTest3"]
+position = Vector2(-0.243553, -0.251646)
+rotation = 0.120428
+texture = ExtResource("5_w0pwc")
+hframes = 90
+vframes = 90
+frame = 637
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_ik016")
+
+[node name="Sun" type="Sprite2D" parent="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("2_fy02d")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D/Sun"]
+position = Vector2(-59, -70)
+script = ExtResource("4_ju2xs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Sun/Area2D"]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_rnlua")
+
+[node name="Explosion(10)" type="Sprite2D" parent="Sprite2D/Sun"]
+visible = false
+position = Vector2(-60.8333, -74.1667)
+scale = Vector2(0.833333, 0.833333)
+texture = ExtResource("6_d21qw")
+hframes = 4
+vframes = 4
+
+[node name="TileMapTest2" type="Sprite2D" parent="."]
+position = Vector2(184, -120)
+rotation = -0.71733
+scale = Vector2(1000, 1000)
+texture = ExtResource("5_w0pwc")
+hframes = 90
+vframes = 90
+frame = 637
+
+[node name="TileMapTest2" type="Sprite2D" parent="TileMapTest2"]
+position = Vector2(-0.176096, 0.192736)
+rotation = -0.118682
+texture = ExtResource("5_w0pwc")
+hframes = 90
+vframes = 90
+frame = 637
+
+[node name="TileMapTest2" type="Sprite2D" parent="TileMapTest2/TileMapTest2"]
+position = Vector2(-0.243553, -0.251646)
+rotation = 0.120428
+texture = ExtResource("5_w0pwc")
+hframes = 90
+vframes = 90
+frame = 637
+
+[node name="TileMapTest" type="Sprite2D" parent="."]
+position = Vector2(-85, -89)
+scale = Vector2(1000, 1000)
+texture = ExtResource("5_w0pwc")
+hframes = 90
+vframes = 90
+frame = 637
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="Moon" type="Sprite2D" parent="Node2D2"]
+texture_filter = 1
+texture = ExtResource("5_rnlua")
+
+[node name="Area2D" type="Area2D" parent="Node2D2/Moon"]
+script = ExtResource("6_gct2s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/Moon/Area2D"]
+position = Vector2(54, 94)
+shape = SubResource("CircleShape2D_rffac")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D2"]
+libraries = {
+&"": SubResource("AnimationLibrary_c6wm7")
+}
+
+[node name="MooonFloor" type="Sprite2D" parent="."]
+texture = ExtResource("7_c6wm7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.6, 2.6)
+
+[node name="car_boot" parent="." instance=ExtResource("8_gct2s")]
+position = Vector2(-64, -19)
+
+[node name="topwall" type="Sprite2D" parent="."]
+position = Vector2(0, -60)
+scale = Vector2(1.00167, 0.996681)
+texture = ExtResource("9_jkle8")
+vframes = 2
+
+[node name="player" parent="." instance=ExtResource("2_tjdta")]
+z_index = 2
+position = Vector2(-33, 9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gct2s")
+}
+
+[node name="harpoon_gun" parent="." instance=ExtResource("7_rnlua")]
+z_index = 1
+position = Vector2(17, -10)
+rotation = 1.5708
+
+[node name="bottomwall" type="Sprite2D" parent="."]
+position = Vector2(0, 60)
+texture = ExtResource("9_jkle8")
+vframes = 2
+frame = 1
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("ConcavePolygonShape2D_w0pwc")
+
+[node name="looper2" type="Area2D" parent="." node_paths=PackedStringArray("spawn", "loop_to")]
+position = Vector2(-149, -196)
+script = ExtResource("8_jkle8")
+spawn = NodePath("Node2D")
+loop_to = NodePath("../looper")
+world_name = "camp"
+metadata/_custom_type_script = "uid://fnnkwikftbfh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="looper2"]
+position = Vector2(20.2884, 111.767)
+rotation = 0.837758
+shape = SubResource("RectangleShape2D_w0pwc")
+
+[node name="Node2D" type="Node2D" parent="looper2"]
+position = Vector2(98, 123)
+
+[node name="looper" type="Area2D" parent="." node_paths=PackedStringArray("spawn", "loop_to")]
+position = Vector2(-70, -291)
+script = ExtResource("8_jkle8")
+spawn = NodePath("Node2D")
+loop_to = NodePath("")
+world_name = "laundry"
+metadata/_custom_type_script = "uid://fnnkwikftbfh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="looper"]
+position = Vector2(25, 117)
+rotation = 0.837758
+shape = SubResource("RectangleShape2D_w0pwc")
+
+[node name="Node2D" type="Node2D" parent="looper"]
+position = Vector2(41, 253)
+
+[connection signal="body_entered" from="Sprite2D/Sun/Area2D" to="Sprite2D/Sun/Area2D" method="_on_body_entered"]
+[connection signal="area_entered" from="Node2D2/Moon/Area2D" to="Node2D2/Moon/Area2D" method="_on_area_entered"]
+[connection signal="body_entered" from="Node2D2/Moon/Area2D" to="Node2D2/Moon/Area2D" method="_on_body_entered"]

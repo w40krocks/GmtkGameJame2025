@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1gn2ub4b6jcf"]
+
+[ext_resource type="Script" uid="uid://bax0me47fcikd" path="res://Assets/Environments/camp/harpoon_gun.gd" id="1_7oklq"]
+[ext_resource type="Texture2D" uid="uid://bts5bcy0huhdi" path="res://Assets/Environments/camp/Harpoon Gun.png" id="2_o26j8"]
+[ext_resource type="SpriteFrames" uid="uid://b3rt1q61p07us" path="res://Assets/Environments/interactables/pointer.tres" id="3_wrark"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07kkq"]
+size = Vector2(8, 20)
+
+[node name="harpoon_gun" type="StaticBody2D" node_paths=PackedStringArray("pointer")]
+script = ExtResource("1_7oklq")
+pointer = NodePath("Sprite2D/AnimatedSprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_o26j8")
+hframes = 2
+frame = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+position = Vector2(-0.5, -13)
+sprite_frames = ExtResource("3_wrark")
+animation = &"start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_07kkq")

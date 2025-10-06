@@ -1,0 +1,151 @@
+[gd_scene load_steps=17 format=3 uid="uid://b87nip1yknhej"]
+
+[ext_resource type="Script" uid="uid://bjnhi3mlqogli" path="res://Assets/Environments/Laundromat/laundramat.gd" id="1_46mgm"]
+[ext_resource type="Texture2D" uid="uid://c2cutspwr4kl7" path="res://Assets/Environments/Laundromat/room floor.png" id="2_41f6w"]
+[ext_resource type="PackedScene" uid="uid://ca7flt3yf33en" path="res://Assets/Environments/Laundromat/Washing_machine.tscn" id="2_46mgm"]
+[ext_resource type="PackedScene" uid="uid://c8b28xnw4vtij" path="res://Player/Player.tscn" id="3_xdqgw"]
+[ext_resource type="Script" uid="uid://fnnkwikftbfh" path="res://Assets/Environments/Looper/looper.gd" id="4_41f6w"]
+[ext_resource type="Texture2D" uid="uid://cx5wd3f5pi2tj" path="res://Assets/Environments/shed/Shed_walls.png" id="7_2qy48"]
+[ext_resource type="Texture2D" uid="uid://dechdmw5g4gf5" path="res://Assets/Environments/Laundromat/Laudromat Props8.png" id="7_ast33"]
+[ext_resource type="Texture2D" uid="uid://d2k4s0rkdidd2" path="res://Assets/Environments/Laundromat/Laudromat Props7.png" id="8_ntayq"]
+[ext_resource type="Texture2D" uid="uid://cwgige3qra7gh" path="res://Assets/Environments/Laundromat/Laudromat Props4.png" id="9_g01rr"]
+[ext_resource type="Texture2D" uid="uid://bu2o2nmyjbgj7" path="res://Assets/Environments/Laundromat/Laudromat Props5.png" id="10_fa2di"]
+[ext_resource type="Texture2D" uid="uid://fpm6jekjf6hm" path="res://Assets/Environments/Laundromat/Laudromat Props1.png" id="11_dbwut"]
+[ext_resource type="Texture2D" uid="uid://7gkjilwhvulf" path="res://Assets/Environments/Laundromat/Laudromat Props2.png" id="12_2atvr"]
+[ext_resource type="Texture2D" uid="uid://da811db5jep7n" path="res://Assets/Environments/Laundromat/Laudromat Props6.png" id="13_j6iuj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3c0f4"]
+size = Vector2(20, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emlxi"]
+size = Vector2(40, 61)
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_35xu7"]
+segments = PackedVector2Array(143, -50, 144, 47, 96, 96, 65, 127, 65, 127, -66, 127, -66, 127, -142, 53, -142, 51, -146, -67, -96, -111, -67, -139, -67, -138, 65, -137, 141, -62, 66, -137, 0, 0, 0, 0)
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_46mgm")
+washing_machine_count = 7
+
+[node name="RoomFloor2" type="Sprite2D" parent="."]
+position = Vector2(269, 194)
+texture = ExtResource("2_41f6w")
+
+[node name="RoomFloor" type="Sprite2D" parent="."]
+position = Vector2(-1, -13)
+texture = ExtResource("2_41f6w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -1)
+zoom = Vector2(2.8, 2.8)
+
+[node name="washing_machine" parent="." instance=ExtResource("2_46mgm")]
+position = Vector2(-62, -91)
+
+[node name="washing_machine2" parent="." instance=ExtResource("2_46mgm")]
+position = Vector2(14, -94)
+
+[node name="washing_machine3" parent="." instance=ExtResource("2_46mgm")]
+position = Vector2(-60, -45)
+
+[node name="washing_machine4" parent="." instance=ExtResource("2_46mgm")]
+position = Vector2(69, -41)
+
+[node name="looper" type="Area2D" parent="." node_paths=PackedStringArray("spawn", "loop_to")]
+position = Vector2(100, -30)
+script = ExtResource("4_41f6w")
+spawn = NodePath("Node2D")
+loop_to = NodePath("../looper2")
+world_name = "laundry"
+metadata/_custom_type_script = "uid://fnnkwikftbfh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="looper"]
+position = Vector2(25, 117)
+rotation = 0.837758
+shape = SubResource("RectangleShape2D_3c0f4")
+
+[node name="Node2D" type="Node2D" parent="looper"]
+position = Vector2(13, 100)
+
+[node name="looper2" type="Area2D" parent="." node_paths=PackedStringArray("spawn", "loop_to")]
+position = Vector2(-100, -20)
+script = ExtResource("4_41f6w")
+spawn = NodePath("Node2D")
+loop_to = NodePath("../looper")
+world_name = "laundry"
+metadata/_custom_type_script = "uid://fnnkwikftbfh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="looper2"]
+position = Vector2(-33, -98)
+rotation = 0.888373
+shape = SubResource("RectangleShape2D_emlxi")
+
+[node name="Node2D" type="Node2D" parent="looper2"]
+position = Vector2(-15, -72)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("ConcavePolygonShape2D_35xu7")
+
+[node name="LaudromatProps8" type="Sprite2D" parent="."]
+position = Vector2(-95, -54)
+texture = ExtResource("7_ast33")
+
+[node name="LaudromatProps7" type="Sprite2D" parent="."]
+position = Vector2(101, -48)
+texture = ExtResource("8_ntayq")
+
+[node name="LaudromatProps4" type="Sprite2D" parent="."]
+position = Vector2(78, -5)
+texture = ExtResource("9_g01rr")
+
+[node name="LaudromatProps5" type="Sprite2D" parent="."]
+position = Vector2(-79, -80)
+texture = ExtResource("10_fa2di")
+
+[node name="LaudromatProps1" type="Sprite2D" parent="."]
+position = Vector2(-70, -13)
+texture = ExtResource("11_dbwut")
+
+[node name="LaudromatProps2" type="Sprite2D" parent="."]
+position = Vector2(75, -60)
+texture = ExtResource("12_2atvr")
+
+[node name="LaudromatProps6" type="Sprite2D" parent="."]
+position = Vector2(-32, 51)
+texture = ExtResource("13_j6iuj")
+
+[node name="LaudromatProps9" type="Sprite2D" parent="."]
+position = Vector2(36, 65)
+texture = ExtResource("7_ast33")
+
+[node name="LaudromatProps10" type="Sprite2D" parent="."]
+position = Vector2(-50, 74)
+texture = ExtResource("8_ntayq")
+
+[node name="washing_machine5" parent="." instance=ExtResource("2_46mgm")]
+position = Vector2(-88, 35)
+
+[node name="washing_machine6" parent="." instance=ExtResource("2_46mgm")]
+position = Vector2(86, 28)
+
+[node name="washing_machine7" parent="." instance=ExtResource("2_46mgm")]
+position = Vector2(65, -82)
+
+[node name="Shed_top Walls" type="Sprite2D" parent="."]
+position = Vector2(-2, -91)
+texture = ExtResource("7_2qy48")
+flip_h = true
+vframes = 2
+
+[node name="player" parent="." instance=ExtResource("3_xdqgw")]
+position = Vector2(20, -11)
+
+[node name="Shed_bottom Walls" type="Sprite2D" parent="."]
+position = Vector2(-4, 61)
+texture = ExtResource("7_2qy48")
+flip_h = true
+vframes = 2
+frame = 1

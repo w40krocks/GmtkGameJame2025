@@ -1,0 +1,60 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://b3rt1q61p07us"]
+
+[ext_resource type="Texture2D" uid="uid://bq358bhuj7tdj" path="res://Assets/Environments/interactables/Exclamation point.png" id="1_iqd4w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqd4w"]
+atlas = ExtResource("1_iqd4w")
+region = Rect2(0, 0, 1, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbw00"]
+atlas = ExtResource("1_iqd4w")
+region = Rect2(0, 0, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efx33"]
+atlas = ExtResource("1_iqd4w")
+region = Rect2(1, 0, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbb4y"]
+atlas = ExtResource("1_iqd4w")
+region = Rect2(2, 0, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wnlv"]
+atlas = ExtResource("1_iqd4w")
+region = Rect2(3, 0, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eu7e"]
+atlas = ExtResource("1_iqd4w")
+region = Rect2(4, 0, 1, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqrr0"]
+atlas = ExtResource("1_iqd4w")
+region = Rect2(5, 0, 1, 8)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqd4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbw00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efx33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbb4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wnlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eu7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqrr0")
+}],
+"loop": false,
+"name": &"start",
+"speed": 10.0
+}]

@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=3 uid="uid://bygu1sb6ug0bj"]
+
+[ext_resource type="Texture2D" uid="uid://mdehbbvlff0q" path="res://Assets/Environments/shed/Shed_floor.png" id="1_et1no"]
+[ext_resource type="Texture2D" uid="uid://cx5wd3f5pi2tj" path="res://Assets/Environments/shed/Shed_walls.png" id="2_8mubu"]
+[ext_resource type="PackedScene" uid="uid://c8b28xnw4vtij" path="res://Player/Player.tscn" id="2_et1no"]
+[ext_resource type="PackedScene" uid="uid://dju625w5n5po1" path="res://Assets/Environments/shed/bike.tscn" id="3_8mubu"]
+[ext_resource type="Script" uid="uid://fnnkwikftbfh" path="res://Assets/Environments/Looper/looper.gd" id="5_8mubu"]
+[ext_resource type="Texture2D" uid="uid://bsospwel051m" path="res://Assets/Environments/shed/Shelf1.png" id="6_128km"]
+[ext_resource type="Texture2D" uid="uid://dioj60av4n2jl" path="res://Assets/Environments/shed/Shelf2.png" id="7_5kmlp"]
+[ext_resource type="Texture2D" uid="uid://dlhg1iioq778i" path="res://Assets/Environments/shed/Shelf_both_boxes1.png" id="8_ywtjv"]
+[ext_resource type="Texture2D" uid="uid://bd16yf0a36aml" path="res://Assets/Environments/shed/Shelf_both_boxes2.png" id="9_ur1le"]
+[ext_resource type="Texture2D" uid="uid://dycv5hvr06n36" path="res://Assets/Environments/shed/Shelf_orange_boxes1.png" id="10_6swxl"]
+[ext_resource type="Texture2D" uid="uid://jqviejy63e37" path="res://Assets/Environments/shed/Shelf_orange_boxes2.png" id="11_jt8io"]
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_et1no"]
+segments = PackedVector2Array(143, -50, 142, 51, 142, 51, 65, 127, 65, 127, -66, 127, -66, 127, -96, 98, -142, 51, -142, -49, -142, -49, -64, -128, -64, -128, 64, -128, 96, -98, 64, -128, 0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pp1g2"]
+size = Vector2(79.3011, 27.2607)
+
+[node name="Node2D" type="Node2D"]
+texture_filter = 1
+
+[node name="ShedFloor" type="Sprite2D" parent="."]
+texture = ExtResource("1_et1no")
+
+[node name="ShedFloor" type="Sprite2D" parent="ShedFloor"]
+position = Vector2(-263, 187)
+texture = ExtResource("1_et1no")
+
+[node name="Shed_top Walls" type="Sprite2D" parent="."]
+position = Vector2(0, -81)
+texture = ExtResource("2_8mubu")
+vframes = 2
+
+[node name="player" parent="." instance=ExtResource("2_et1no")]
+position = Vector2(17, 20)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -15)
+zoom = Vector2(2.8, 2.8)
+
+[node name="bike" parent="." instance=ExtResource("3_8mubu")]
+damage_threshold = 5
+
+[node name="Shed_bottom Walls" type="Sprite2D" parent="."]
+position = Vector2(0, 50)
+texture = ExtResource("2_8mubu")
+vframes = 2
+frame = 1
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("ConcavePolygonShape2D_et1no")
+
+[node name="looper1" type="Area2D" parent="." node_paths=PackedStringArray("spawn", "loop_to")]
+script = ExtResource("5_8mubu")
+spawn = NodePath("lopper1")
+loop_to = NodePath("../looper2")
+world_name = "bike"
+metadata/_custom_type_script = "uid://fnnkwikftbfh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="looper1"]
+position = Vector2(135.572, -121.461)
+rotation = 0.71733
+shape = SubResource("RectangleShape2D_pp1g2")
+
+[node name="lopper1" type="Node2D" parent="looper1"]
+position = Vector2(117, -95)
+
+[node name="looper2" type="Area2D" parent="." node_paths=PackedStringArray("spawn", "loop_to")]
+script = ExtResource("5_8mubu")
+spawn = NodePath("lopper2")
+loop_to = NodePath("../looper1")
+world_name = "bike"
+metadata/_custom_type_script = "uid://fnnkwikftbfh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="looper2"]
+position = Vector2(-141.684, 95.9301)
+rotation = 0.71733
+shape = SubResource("RectangleShape2D_pp1g2")
+
+[node name="lopper2" type="Node2D" parent="looper2"]
+position = Vector2(-123, 75)
+
+[node name="Shelf1" type="Sprite2D" parent="."]
+position = Vector2(-58, -142)
+texture = ExtResource("6_128km")
+
+[node name="Shelf2" type="Sprite2D" parent="."]
+position = Vector2(-110, -89)
+texture = ExtResource("7_5kmlp")
+
+[node name="ShelfBothBoxes1" type="Sprite2D" parent="."]
+position = Vector2(-17, -138)
+texture = ExtResource("8_ywtjv")
+
+[node name="ShelfBothBoxes2" type="Sprite2D" parent="."]
+position = Vector2(-84, -117)
+texture = ExtResource("9_ur1le")
+
+[node name="ShelfOrangeBoxes1" type="Sprite2D" parent="."]
+position = Vector2(136, 4)
+texture = ExtResource("10_6swxl")
+
+[node name="ShelfOrangeBoxes2" type="Sprite2D" parent="."]
+position = Vector2(130, -69)
+texture = ExtResource("11_jt8io")
+flip_h = true
+
+[node name="Shelf3" type="Sprite2D" parent="."]
+position = Vector2(33, -140)
+texture = ExtResource("6_128km")

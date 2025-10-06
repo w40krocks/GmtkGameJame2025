@@ -1,0 +1,164 @@
+[gd_scene load_steps=16 format=3 uid="uid://cy5kvpf6dtil2"]
+
+[ext_resource type="Texture2D" uid="uid://dfpvg7w2piuu5" path="res://Assets/Environments/Hub/hub_ground.png" id="1_eynco"]
+[ext_resource type="Script" uid="uid://bstfo8vk35ly8" path="res://Assets/Environments/Hub/hub_world.gd" id="1_m134q"]
+[ext_resource type="PackedScene" uid="uid://c8b28xnw4vtij" path="res://Player/Player.tscn" id="2_eynco"]
+[ext_resource type="Texture2D" uid="uid://cd8ktmsmj8f1k" path="res://Assets/Environments/Hub/hub_wall.png" id="2_ylgxk"]
+[ext_resource type="Texture2D" uid="uid://bl3tcx8vi3ilc" path="res://doors.png" id="4_flese"]
+[ext_resource type="Script" uid="uid://dioh7ny8ndn5k" path="res://Assets/Environments/Hub/hub_door.gd" id="5_o31g8"]
+[ext_resource type="Texture2D" uid="uid://dupygrtni0hyw" path="res://door gems.png" id="5_sf87u"]
+[ext_resource type="SpriteFrames" uid="uid://b3rt1q61p07us" path="res://Assets/Environments/interactables/pointer.tres" id="6_2icld"]
+[ext_resource type="PackedScene" uid="uid://bdwlj6ks2xigi" path="res://Assets/Environments/camp/camp.tscn" id="6_0135r"]
+[ext_resource type="PackedScene" uid="uid://b87nip1yknhej" path="res://Assets/Environments/Laundromat/Laundramat.tscn" id="9_663da"]
+[ext_resource type="PackedScene" uid="uid://bygu1sb6ug0bj" path="res://Assets/Environments/shed/shed.tscn" id="10_0135r"]
+[ext_resource type="Script" uid="uid://hi5fte1g0t77" path="res://Assets/Environments/Hub/main_door.gd" id="12_663da"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0135r"]
+size = Vector2(20, 40)
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_eynco"]
+segments = PackedVector2Array(142, -49, 142, 51, 142, 51, 65, 127, 65, 127, -66, 127, -66, 127, -142, 51, -142, 51, -142, -49, -142, -49, -64, -128, -64, -128, 64, -128, 142, -49, 64, -128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goivo"]
+size = Vector2(51, 40)
+
+[node name="HubWorld" type="Node2D"]
+script = ExtResource("1_m134q")
+
+[node name="ground" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_eynco")
+
+[node name="Bottom_wall" type="Sprite2D" parent="ground"]
+z_index = 10
+position = Vector2(0, 49)
+texture = ExtResource("2_ylgxk")
+vframes = 2
+frame = 1
+
+[node name="doors" type="Node2D" parent="ground/Bottom_wall"]
+
+[node name="camp" type="Sprite2D" parent="ground/Bottom_wall/doors"]
+position = Vector2(118, 25)
+texture = ExtResource("4_flese")
+hframes = 4
+frame = 2
+
+[node name="Area2D" type="Area2D" parent="ground/Bottom_wall/doors/camp" node_paths=PackedStringArray("pointer")]
+script = ExtResource("5_o31g8")
+world = ExtResource("6_0135r")
+pointer = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/Bottom_wall/doors/camp/Area2D"]
+position = Vector2(-9, -1)
+shape = SubResource("RectangleShape2D_0135r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ground/Bottom_wall/doors/camp/Area2D"]
+z_index = 40
+position = Vector2(-10, -23)
+sprite_frames = ExtResource("6_2icld")
+animation = &"start"
+
+[node name="bike" type="Sprite2D" parent="ground/Bottom_wall/doors"]
+position = Vector2(-118.875, 26.25)
+scale = Vector2(1.30469, 1.0875)
+texture = ExtResource("4_flese")
+flip_h = true
+hframes = 4
+frame = 3
+
+[node name="top_wall" type="Sprite2D" parent="ground"]
+position = Vector2(0, -80)
+texture = ExtResource("2_ylgxk")
+vframes = 2
+
+[node name="Laundry" type="Sprite2D" parent="ground/top_wall"]
+visible = false
+position = Vector2(3, -61)
+texture = ExtResource("5_sf87u")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="camp" type="Sprite2D" parent="ground/top_wall"]
+visible = false
+position = Vector2(1, -53)
+texture = ExtResource("5_sf87u")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="bike" type="Sprite2D" parent="ground/top_wall"]
+visible = false
+position = Vector2(-3, -59)
+texture = ExtResource("5_sf87u")
+hframes = 2
+vframes = 2
+
+[node name="doors" type="Node2D" parent="ground/top_wall"]
+
+[node name="laundry" type="Sprite2D" parent="ground/top_wall/doors"]
+position = Vector2(95, -19)
+texture = ExtResource("4_flese")
+flip_h = true
+hframes = 4
+
+[node name="Area2D" type="Area2D" parent="ground/top_wall/doors/laundry" node_paths=PackedStringArray("pointer")]
+script = ExtResource("5_o31g8")
+world = ExtResource("9_663da")
+pointer = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/top_wall/doors/laundry/Area2D"]
+position = Vector2(7, 1)
+shape = SubResource("RectangleShape2D_0135r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ground/top_wall/doors/laundry/Area2D"]
+position = Vector2(7, -20)
+sprite_frames = ExtResource("6_2icld")
+animation = &"start"
+
+[node name="shed" type="Sprite2D" parent="ground/top_wall/doors"]
+position = Vector2(-95, -19)
+texture = ExtResource("4_flese")
+hframes = 4
+
+[node name="Area2D" type="Area2D" parent="ground/top_wall/doors/shed" node_paths=PackedStringArray("pointer")]
+script = ExtResource("5_o31g8")
+world = ExtResource("10_0135r")
+pointer = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/top_wall/doors/shed/Area2D"]
+position = Vector2(-9, -1)
+shape = SubResource("RectangleShape2D_0135r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ground/top_wall/doors/shed/Area2D"]
+position = Vector2(-9, -23)
+sprite_frames = ExtResource("6_2icld")
+animation = &"start"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -15)
+zoom = Vector2(2.2, 2.2)
+
+[node name="player" parent="." instance=ExtResource("2_eynco")]
+position = Vector2(1, -7)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("ConcavePolygonShape2D_eynco")
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("pointer")]
+position = Vector2(0, -150)
+script = ExtResource("12_663da")
+pointer = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_goivo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = ExtResource("6_2icld")
+animation = &"start"
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
